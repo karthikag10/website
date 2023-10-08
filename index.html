@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign-up Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #email, #password {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #submit {
+            background-color: #1a17db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign-up</h2>
+        <form id="signupForm" onsubmit="validateForm(); return false;">
+            <label for="email">User Email:</label>
+            <input type="text" id="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+
+            <p id="error"></p>
+
+            <button type="submit" id="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var error = document.getElementById("error");
+            var validEmail = /\S+@\S+\.\S+/;
+            var validPassword = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
+
+            if (!validEmail.test(email)) {
+                error.innerHTML = "Invalid email. Please enter a valid email address.";
+            } else if (!validPassword.test(password)) {
+                error.innerHTML = "Invalid password. Password must contain at least one uppercase letter, one special character, one number, and be at least 8 characters long.";
+            } else {
+                error.innerHTML = "Successful";
+            }
+        }
+    </script>
+</body>
+</html>
